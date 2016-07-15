@@ -15,6 +15,13 @@ class CreateNotifications < ActiveRecord::Migration[5.0]
       t.attachment :icon
       t.attachment :large_icon
       t.timestamps
+      t.references :status_bar_notification
+      t.index :category
+      t.index :when
     end
+
+    add_reference :status_bar_notifications, :notification
+    add_foreign_key :status_bar_notifications, :notifications
+    add_foreign_key :notifications, :status_bar_notifications
   end
 end

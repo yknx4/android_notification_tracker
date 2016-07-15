@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160715151029) do
+ActiveRecord::Schema.define(version: 20160715171452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,34 @@ ActiveRecord::Schema.define(version: 20160715151029) do
     t.index ["provider"], name: "index_locations_on_provider", using: :btree
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string   "ticker_text"
+    t.integer  "when_ms"
+    t.datetime "when"
+    t.integer  "visibility"
+    t.integer  "priority"
+    t.integer  "number"
+    t.integer  "icon_level"
+    t.integer  "flags"
+    t.integer  "defaults"
+    t.integer  "color"
+    t.string   "category"
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
+    t.integer  "icon_file_size"
+    t.datetime "icon_updated_at"
+    t.string   "large_icon_file_name"
+    t.string   "large_icon_content_type"
+    t.integer  "large_icon_file_size"
+    t.datetime "large_icon_updated_at"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "status_bar_notification_id"
+    t.index ["category"], name: "index_notifications_on_category", using: :btree
+    t.index ["status_bar_notification_id"], name: "index_notifications_on_status_bar_notification_id", using: :btree
+    t.index ["when"], name: "index_notifications_on_when", using: :btree
+  end
+
   create_table "status_bar_notifications", force: :cascade do |t|
     t.string   "group_key"
     t.string   "key"
@@ -51,12 +79,16 @@ ActiveRecord::Schema.define(version: 20160715151029) do
     t.integer  "location_id"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.integer  "notification_id"
     t.index ["group_key"], name: "index_status_bar_notifications_on_group_key", using: :btree
     t.index ["key"], name: "index_status_bar_notifications_on_key", using: :btree
     t.index ["location_id"], name: "index_status_bar_notifications_on_location_id", using: :btree
+    t.index ["notification_id"], name: "index_status_bar_notifications_on_notification_id", using: :btree
     t.index ["package_name"], name: "index_status_bar_notifications_on_package_name", using: :btree
     t.index ["post_time"], name: "index_status_bar_notifications_on_post_time", using: :btree
   end
 
+  add_foreign_key "notifications", "status_bar_notifications"
   add_foreign_key "status_bar_notifications", "locations"
+  add_foreign_key "status_bar_notifications", "notifications"
 end
