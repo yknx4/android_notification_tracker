@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: android_notification_tracker_production
-  username: android_notification_tracker
-  password: <%= ENV['ANDROID_NOTIFICATION_TRACKER_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
