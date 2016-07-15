@@ -20,10 +20,8 @@ class Api::V1::StatusBarNotificationsController < Api::V1::V1BaseController
   def create
     status_bar_notification = StatusBarNotification.new(status_bar_notification_params)
 
-    binding.pry
     status_bar_notification.save
 
-    binding.pry
     render json: status_bar_notification
 
   end
@@ -54,6 +52,7 @@ class Api::V1::StatusBarNotificationsController < Api::V1::V1BaseController
     end
 
     def decorate_params
+      return unless params[:status_bar_notification].present? and params[:status_bar_notification][:notification_attributes].present? and params[:status_bar_notification][:notification_attributes][:extras].present?
       extras = params[:status_bar_notification][:notification_attributes][:extras]
 
       if extras.present?
@@ -73,7 +72,7 @@ class Api::V1::StatusBarNotificationsController < Api::V1::V1BaseController
 
     end
 
-    def array_params(array)
+    def array_params(array = [])
       if array.first.is_a?(Array)
         array_params(array.first)
       elsif array.first.is_a?(Hash)
@@ -83,7 +82,7 @@ class Api::V1::StatusBarNotificationsController < Api::V1::V1BaseController
       end
     end
 
-    def hash_params(hash)
+    def hash_params(hash = {})
       hash.map do |key, value|
         if value.is_a?(Hash)
           hash_strong_params = {}
@@ -101,12 +100,12 @@ class Api::V1::StatusBarNotificationsController < Api::V1::V1BaseController
 
     def status_bar_notification_params
 
-      notification_extra_content = params[:status_bar_notification][:notification_attributes][:extras].try(:to_unsafe_hash) || {}
+      notification_extra_content = params.try(:[], :status_bar_notification).try(:[], :notification_attributes).try(:[],:extras).try(:to_unsafe_hash) || {}
       content_permitted_params = hash_params(notification_extra_content)
 
       location_permitted_params = {}
       if has_location?
-        location_extra = params[:status_bar_notification][:location_attributes][:extras].try(:to_unsafe_hash) || {}
+        location_extra = params.try(:[], :status_bar_notification).try(:[], :location_attributes).try(:[],:extras).try(:to_unsafe_hash) || {}
         location_permitted_params = hash_params(location_extra)
       end
 
