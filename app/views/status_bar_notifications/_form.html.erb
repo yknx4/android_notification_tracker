@@ -1,0 +1,87 @@
+<%= form_for(status_bar_notification) do |f| %>
+  <% if status_bar_notification.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(status_bar_notification.errors.count, "error") %> prohibited this status_bar_notification from being saved:</h2>
+
+      <ul>
+      <% status_bar_notification.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :group_key %>
+    <%= f.text_field :group_key %>
+  </div>
+
+  <div class="field">
+    <%= f.label :id %>
+    <%= f.number_field :id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :key %>
+    <%= f.text_field :key %>
+  </div>
+
+  <div class="field">
+    <%= f.label :override_group_key %>
+    <%= f.text_field :override_group_key %>
+  </div>
+
+  <div class="field">
+    <%= f.label :post_time_ms %>
+    <%= f.number_field :post_time_ms %>
+  </div>
+
+  <div class="field">
+    <%= f.label :post_time %>
+    <%= f.text_field :post_time %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tag %>
+    <%= f.text_field :tag %>
+  </div>
+
+  <div class="field">
+    <%= f.label :android_user_id %>
+    <%= f.number_field :android_user_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :is_clearable %>
+    <%= f.check_box :is_clearable %>
+  </div>
+
+  <div class="field">
+    <%= f.label :is_group %>
+    <%= f.check_box :is_group %>
+  </div>
+
+  <div class="field">
+    <%= f.label :is_ongoing %>
+    <%= f.check_box :is_ongoing %>
+  </div>
+
+  <div class="field">
+    <%= f.label :android_notification_id %>
+    <%= f.number_field :android_notification_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :package_name %>
+    <%= f.text_field :package_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :location_id %>
+    <%= f.text_field :location_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

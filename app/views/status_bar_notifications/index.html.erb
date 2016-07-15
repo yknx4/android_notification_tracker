@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Status Bar Notifications</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Group key</th>
+      <th>Id</th>
+      <th>Key</th>
+      <th>Override group key</th>
+      <th>Post time ms</th>
+      <th>Post time</th>
+      <th>Tag</th>
+      <th>Android user</th>
+      <th>Is clearable</th>
+      <th>Is group</th>
+      <th>Is ongoing</th>
+      <th>Android notification</th>
+      <th>Package name</th>
+      <th>Location</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @status_bar_notifications.each do |status_bar_notification| %>
+      <tr>
+        <td><%= status_bar_notification.group_key %></td>
+        <td><%= status_bar_notification.id %></td>
+        <td><%= status_bar_notification.key %></td>
+        <td><%= status_bar_notification.override_group_key %></td>
+        <td><%= status_bar_notification.post_time_ms %></td>
+        <td><%= status_bar_notification.post_time %></td>
+        <td><%= status_bar_notification.tag %></td>
+        <td><%= status_bar_notification.android_user_id %></td>
+        <td><%= status_bar_notification.is_clearable %></td>
+        <td><%= status_bar_notification.is_group %></td>
+        <td><%= status_bar_notification.is_ongoing %></td>
+        <td><%= status_bar_notification.android_notification_id %></td>
+        <td><%= status_bar_notification.package_name %></td>
+        <td><%= status_bar_notification.location %></td>
+        <td><%= link_to 'Show', status_bar_notification %></td>
+        <td><%= link_to 'Edit', edit_status_bar_notification_path(status_bar_notification) %></td>
+        <td><%= link_to 'Destroy', status_bar_notification, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Status Bar Notification', new_status_bar_notification_path %>

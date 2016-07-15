@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Group key:</strong>
+  <%= @status_bar_notification.group_key %>
+</p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @status_bar_notification.id %>
+</p>
+
+<p>
+  <strong>Key:</strong>
+  <%= @status_bar_notification.key %>
+</p>
+
+<p>
+  <strong>Override group key:</strong>
+  <%= @status_bar_notification.override_group_key %>
+</p>
+
+<p>
+  <strong>Post time ms:</strong>
+  <%= @status_bar_notification.post_time_ms %>
+</p>
+
+<p>
+  <strong>Post time:</strong>
+  <%= @status_bar_notification.post_time %>
+</p>
+
+<p>
+  <strong>Tag:</strong>
+  <%= @status_bar_notification.tag %>
+</p>
+
+<p>
+  <strong>Android user:</strong>
+  <%= @status_bar_notification.android_user_id %>
+</p>
+
+<p>
+  <strong>Is clearable:</strong>
+  <%= @status_bar_notification.is_clearable %>
+</p>
+
+<p>
+  <strong>Is group:</strong>
+  <%= @status_bar_notification.is_group %>
+</p>
+
+<p>
+  <strong>Is ongoing:</strong>
+  <%= @status_bar_notification.is_ongoing %>
+</p>
+
+<p>
+  <strong>Android notification:</strong>
+  <%= @status_bar_notification.android_notification_id %>
+</p>
+
+<p>
+  <strong>Package name:</strong>
+  <%= @status_bar_notification.package_name %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @status_bar_notification.location %>
+</p>
+
+<%= link_to 'Edit', edit_status_bar_notification_path(@status_bar_notification) %> |
+<%= link_to 'Back', status_bar_notifications_path %>

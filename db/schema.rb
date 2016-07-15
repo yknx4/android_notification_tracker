@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160715144400) do
+ActiveRecord::Schema.define(version: 20160715151029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,4 +35,28 @@ ActiveRecord::Schema.define(version: 20160715144400) do
     t.index ["provider"], name: "index_locations_on_provider", using: :btree
   end
 
+  create_table "status_bar_notifications", force: :cascade do |t|
+    t.string   "group_key"
+    t.string   "key"
+    t.string   "override_group_key"
+    t.integer  "post_time_ms"
+    t.datetime "post_time"
+    t.string   "tag"
+    t.integer  "android_user_id"
+    t.boolean  "is_clearable"
+    t.boolean  "is_group"
+    t.boolean  "is_ongoing"
+    t.integer  "android_notification_id"
+    t.string   "package_name"
+    t.integer  "location_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.index ["group_key"], name: "index_status_bar_notifications_on_group_key", using: :btree
+    t.index ["key"], name: "index_status_bar_notifications_on_key", using: :btree
+    t.index ["location_id"], name: "index_status_bar_notifications_on_location_id", using: :btree
+    t.index ["package_name"], name: "index_status_bar_notifications_on_package_name", using: :btree
+    t.index ["post_time"], name: "index_status_bar_notifications_on_post_time", using: :btree
+  end
+
+  add_foreign_key "status_bar_notifications", "locations"
 end

@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  group_key: MyString
+  id: 1
+  key: MyString
+  override_group_key: MyString
+  post_time_ms: 1
+  post_time: 
+  tag: MyString
+  android_user_id: 1
+  is_clearable: false
+  is_group: false
+  is_ongoing: false
+  android_notification_id: 1
+  package_name: MyString
+  location: one
+
+two:
+  group_key: MyString
+  id: 1
+  key: MyString
+  override_group_key: MyString
+  post_time_ms: 1
+  post_time: 
+  tag: MyString
+  android_user_id: 1
+  is_clearable: false
+  is_group: false
+  is_ongoing: false
+  android_notification_id: 1
+  package_name: MyString
+  location: two
