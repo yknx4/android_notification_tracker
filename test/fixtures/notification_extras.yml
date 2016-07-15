@@ -1,0 +1,49 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: 
+  background_image: 
+  big_text: MyText
+  conversation_title: MyString
+  info_text: MyText
+  large_icon: 
+  large_icon_big: 
+  people: MyString
+  picture: 
+  progress: 1
+  progress_indeterminate: false
+  progress_max: 1
+  remote_input_history: MyText
+  self_display_name: MyString
+  small_icon: 
+  sub_text: MyText
+  summary_text: MyText
+  text: MyText
+  text_lines: MyText
+  title: MyString
+  title_big: MyString
+  notification: one
+
+two:
+  content: 
+  background_image: 
+  big_text: MyText
+  conversation_title: MyString
+  info_text: MyText
+  large_icon: 
+  large_icon_big: 
+  people: MyString
+  picture: 
+  progress: 1
+  progress_indeterminate: false
+  progress_max: 1
+  remote_input_history: MyText
+  self_display_name: MyString
+  small_icon: 
+  sub_text: MyText
+  summary_text: MyText
+  text: MyText
+  text_lines: MyText
+  title: MyString
+  title_big: MyString
+  notification: two
