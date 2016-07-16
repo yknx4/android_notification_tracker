@@ -1,8 +1,10 @@
 class StatusBarNotification < ApplicationRecord
+  include CalculatesValues
   belongs_to :notification, inverse_of: :status_bar_notification, dependent: :destroy
   belongs_to :location, inverse_of: :status_bar_notifications
   accepts_nested_attributes_for :location
   accepts_nested_attributes_for :notification
+
 
   BLACKLISTED_PACKAGE_NAMES = ['android', 'com.samsung.android.securitylogagent']
   THROTTLED_PACKAGE_NAMES = ['com.android.incallui']
@@ -21,11 +23,14 @@ class StatusBarNotification < ApplicationRecord
     end
   end
 
-  private
   def is_not_blacklisted
     if BLACKLISTED_PACKAGE_NAMES.include?(package_name)
       errors.add(:package_name, "cannot be used")
     end
+  end
+
+  def calculate_values
+    ms_field_to_datetime_field(:post_time_ms)
   end
 
 end
