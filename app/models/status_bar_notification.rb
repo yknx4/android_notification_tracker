@@ -8,7 +8,7 @@ class StatusBarNotification < ApplicationRecord
 
   BLACKLISTED_PACKAGE_NAMES = ['android', 'com.samsung.android.securitylogagent']
   THROTTLED_PACKAGE_NAMES = ['com.android.incallui']
-  THROTTLE_TIME = 2.minutes
+  THROTTLE_TIME = 5.minutes
 
   validate :is_not_blacklisted
   validate :is_not_throttled
