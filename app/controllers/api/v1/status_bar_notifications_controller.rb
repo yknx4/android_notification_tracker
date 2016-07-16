@@ -20,9 +20,12 @@ class Api::V1::StatusBarNotificationsController < Api::V1::V1BaseController
   def create
     status_bar_notification = StatusBarNotification.new(status_bar_notification_params)
 
-    status_bar_notification.save
+    if status_bar_notification.save
+      render json: status_bar_notification
+    else
+      render json: status_bar_notification.errors, status: :unprocessable_entity
+    end
 
-    render json: status_bar_notification
 
   end
 
