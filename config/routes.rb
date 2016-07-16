@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/socket'
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
+      mount_devise_token_auth_for 'User', at: 'auth'
       resources :echo
       resources :status_bar_notifications
 

@@ -53,4 +53,11 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.action_cable.url = "ws://localhost:3000/socket"
+
+  config.action_mailer.default_url_options = { host: '0.0.0.0', port: 3000 }
+
+  config.action_mailer.default_url_options = { :host => 'yknx.dev' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { :address => 'yknx.dev', :port => 1025 }
+
 end
