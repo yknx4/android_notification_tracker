@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160715205659) do
+ActiveRecord::Schema.define(version: 20160716051955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,13 +97,11 @@ ActiveRecord::Schema.define(version: 20160715205659) do
     t.string   "large_icon_content_type"
     t.integer  "large_icon_file_size"
     t.datetime "large_icon_updated_at"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "status_bar_notification_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "notification_extra_id"
     t.index ["category"], name: "index_notifications_on_category", using: :btree
     t.index ["notification_extra_id"], name: "index_notifications_on_notification_extra_id", using: :btree
-    t.index ["status_bar_notification_id"], name: "index_notifications_on_status_bar_notification_id", using: :btree
     t.index ["when"], name: "index_notifications_on_when", using: :btree
   end
 
@@ -133,7 +131,6 @@ ActiveRecord::Schema.define(version: 20160715205659) do
   end
 
   add_foreign_key "notifications", "notification_extras"
-  add_foreign_key "notifications", "status_bar_notifications"
   add_foreign_key "status_bar_notifications", "locations"
   add_foreign_key "status_bar_notifications", "notifications"
 end
