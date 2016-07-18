@@ -38,8 +38,9 @@ gem 'omniauth-github'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'rack-cors' , :require => 'rack/cors'
-gem "pundit"
+gem 'pundit'
 gem 'kaminari'
+
 
 
 # Use Capistrano for deployment
@@ -52,6 +53,8 @@ group :development, :test do
   gem 'pry-rails', '~> 0.3.4'
   gem 'pry-theme', '~> 1.1.3'
   gem 'rspec-rails', '~> 3.4'
+  gem 'bullet'
+  gem 'slack-notifier'
 end
 
 group :development do

@@ -62,6 +62,13 @@ Rails.application.configure do
 
   config.action_dispatch.rescue_responses["Pundit::NotAuthorizedError"] = :forbidden
 
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+    Bullet.slack = { webhook_url: 'https://hooks.slack.com/services/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', username: 'bullet-dev' }
+  end
 
 
 end
