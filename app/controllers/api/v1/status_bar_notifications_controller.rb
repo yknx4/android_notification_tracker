@@ -9,10 +9,13 @@ class Api::V1::StatusBarNotificationsController < Api::V1::V1BaseController
       status_bar_notifications = current_user.status_bar_notifications
     end
 
+    authorize status_bar_notifications
     render json: status_bar_notifications
   end
 
   def show
+    authorize @status_bar_notification
+    render json: @status_bar_notification
   end
 
   def new
