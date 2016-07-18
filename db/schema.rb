@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20160718052435) do
     t.datetime "updated_at",                    null: false
     t.index ["enabled"], name: "index_notification_throttles_on_enabled", using: :btree
     t.index ["exclude_paid"], name: "index_notification_throttles_on_exclude_paid", using: :btree
-    t.index ["package_name"], name: "index_notification_throttles_on_package_name", using: :btree
+    t.index ["package_name"], name: "index_notification_throttles_on_package_name", unique: true, using: :btree
   end
 
   create_table "notifications", force: :cascade do |t|
