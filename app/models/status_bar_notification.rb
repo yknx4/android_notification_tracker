@@ -2,6 +2,7 @@ class StatusBarNotification < ApplicationRecord
   include CalculatesValues
   belongs_to :notification, inverse_of: :status_bar_notification, dependent: :destroy
   belongs_to :location, inverse_of: :status_bar_notifications
+  belongs_to :user, inverse_of: :status_bar_notifications
   accepts_nested_attributes_for :location
   accepts_nested_attributes_for :notification
 

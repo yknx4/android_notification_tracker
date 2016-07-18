@@ -6,4 +6,5 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  has_many :status_bar_notifications, inverse_of: :user, dependent: :nullify
 end
