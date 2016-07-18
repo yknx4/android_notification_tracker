@@ -1,0 +1,2 @@
+class NotificationThrottle < ApplicationRecord
+end

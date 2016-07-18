@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160718005257) do
+ActiveRecord::Schema.define(version: 20160718052435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,20 @@ ActiveRecord::Schema.define(version: 20160718005257) do
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
     t.index ["self_display_name"], name: "index_notification_extras_on_self_display_name", using: :btree
+  end
+
+  create_table "notification_throttles", force: :cascade do |t|
+    t.string   "package_name",                  null: false
+    t.boolean  "blocked",       default: false
+    t.boolean  "throttled",     default: true
+    t.integer  "throttle_time", default: 5
+    t.boolean  "enabled",       default: true
+    t.boolean  "exclude_paid",  default: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["enabled"], name: "index_notification_throttles_on_enabled", using: :btree
+    t.index ["exclude_paid"], name: "index_notification_throttles_on_exclude_paid", using: :btree
+    t.index ["package_name"], name: "index_notification_throttles_on_package_name", using: :btree
   end
 
   create_table "notifications", force: :cascade do |t|
