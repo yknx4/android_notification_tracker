@@ -5,7 +5,7 @@ class StatusBarNotificationPolicy < ApplicationPolicy
   end
 
   def show?
-    scope.where(:id => record.id).exists? and record.user_id = user.id
+    scope.where(:id => record.id).exists? and record.user_id == user.id
   end
 
   def create?

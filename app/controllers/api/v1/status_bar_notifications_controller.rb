@@ -10,7 +10,7 @@ class Api::V1::StatusBarNotificationsController < Api::V1::V1BaseController
     end
 
     authorize status_bar_notifications
-    render json: status_bar_notifications
+    render json: status_bar_notifications.page(@page).includes(:location)
   end
 
   def show
