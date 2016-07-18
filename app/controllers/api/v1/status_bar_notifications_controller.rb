@@ -68,7 +68,7 @@ class Api::V1::StatusBarNotificationsController < Api::V1::V1BaseController
 
       if extras.present?
         attributes = {}
-        attributes[:content] = extras
+        attributes[:content] = extras['mMap'] || {}
 
         android_data = extras['mMap'] || {}
 
