@@ -10,4 +10,5 @@ class User < ApplicationRecord
   has_many :notifications, through: :status_bar_notifications
   has_many :locations, through: :status_bar_notifications
   has_many :notification_extras, through: :notifications
+  has_many :devices, inverse_of: :user, dependent: :destroy
 end

@@ -4,6 +4,7 @@ class StatusBarNotification < ApplicationRecord
   has_one  :notification_extra, through: :notification
   belongs_to :location, inverse_of: :status_bar_notifications
   belongs_to :user, inverse_of: :status_bar_notifications
+  belongs_to :device, inverse_of: :status_bar_notifications
   accepts_nested_attributes_for :location
   accepts_nested_attributes_for :notification
 

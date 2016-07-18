@@ -10,12 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160718052435) do
+ActiveRecord::Schema.define(version: 20160718172742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
   enable_extension "hstore"
+  enable_extension "uuid-ossp"
+
+  create_table "devices", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string   "name"
+    t.integer  "android_version"
+    t.integer  "user_id",         null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["id", "user_id"], name: "index_devices_on_id_and_user_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_devices_on_user_id", using: :btree
+  end
 
   create_table "locations", force: :cascade do |t|
     t.float     "accuracy"
@@ -137,6 +148,8 @@ ActiveRecord::Schema.define(version: 20160718052435) do
     t.datetime "updated_at",              null: false
     t.integer  "notification_id"
     t.integer  "user_id"
+    t.uuid     "device_id"
+    t.index ["device_id"], name: "index_status_bar_notifications_on_device_id", using: :btree
     t.index ["group_key"], name: "index_status_bar_notifications_on_group_key", using: :btree
     t.index ["key"], name: "index_status_bar_notifications_on_key", using: :btree
     t.index ["location_id"], name: "index_status_bar_notifications_on_location_id", using: :btree
