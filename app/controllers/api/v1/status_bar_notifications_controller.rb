@@ -3,7 +3,12 @@ class Api::V1::StatusBarNotificationsController < Api::V1::V1BaseController
   before_action :decorate_params, only: [:update, :create]
 
   def index
-    status_bar_notifications = StatusBarNotification.all
+    if is_in_development_mode?
+      status_bar_notifications = StatusBarNotification.all
+    else
+      status_bar_notifications = current_user.status_bar_notifications
+    end
+
     render json: status_bar_notifications
   end
 

@@ -4,7 +4,7 @@ class Api::BaseApiController < ActionController::API
 
   private
   def is_in_development_mode?
-    Rails.env.development? and params[:override_auth]
+    ( Rails.env.development? or  current_user.try(:admin?) ) and params[:override_auth]
   end
 
 
