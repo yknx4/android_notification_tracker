@@ -1,6 +1,6 @@
 class CreateDevices < ActiveRecord::Migration[5.0]
   def change
-    create_table :devices, id: :uuid do |t|
+    create_table :devices, id: :uuid, default: 'gen_random_uuid()' do |t|
       t.string :name
       t.integer :android_version
       t.references :user, foreign: true, null: false
