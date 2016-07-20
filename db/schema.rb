@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160718172742) do
+ActiveRecord::Schema.define(version: 20160720213712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,8 +147,8 @@ ActiveRecord::Schema.define(version: 20160718172742) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "notification_id"
-    t.integer  "user_id"
-    t.uuid     "device_id"
+    t.integer  "user_id",                 null: false
+    t.uuid     "device_id",               null: false
     t.index ["device_id"], name: "index_status_bar_notifications_on_device_id", using: :btree
     t.index ["group_key"], name: "index_status_bar_notifications_on_group_key", using: :btree
     t.index ["key"], name: "index_status_bar_notifications_on_key", using: :btree
