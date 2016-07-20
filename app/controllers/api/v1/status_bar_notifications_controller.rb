@@ -26,9 +26,14 @@ class Api::V1::StatusBarNotificationsController < Api::V1::V1BaseController
   end
 
   def create
-    status_bar_notification = StatusBarNotification.new(status_bar_notification_params)
+    status_bar_notification = current_user.status_bar_notifications.new(status_bar_notification_params)
+
+    status_bar_notification.device = current_device if current_device.present?
+
+    authorize status_bar_notification
 
     if status_bar_notification.save
+      puts status_bar_notification.try(:notification_extra).try(:content)
       render json: status_bar_notification
     else
       render json: status_bar_notification.errors, status: :unprocessable_entity
@@ -68,7 +73,7 @@ class Api::V1::StatusBarNotificationsController < Api::V1::V1BaseController
 
       if extras.present?
         attributes = {}
-        attributes[:content] = extras['mMap'] || {}
+        attributes[:content] = extras || {}
 
         android_data = extras['mMap'] || {}
 
@@ -134,7 +139,6 @@ class Api::V1::StatusBarNotificationsController < Api::V1::V1BaseController
         location_extra = params[:status_bar_notification][:location_attributes][:extras] if location_extra_present?
         location_permitted_params = hash_params(location_extra)
       end
-
 
       params
           .require(:status_bar_notification)
