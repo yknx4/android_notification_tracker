@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(version: 20160720213712) do
   enable_extension "plpgsql"
   enable_extension "postgis"
   enable_extension "hstore"
-  enable_extension "uuid-ossp"
+  enable_extension "pgcrypto"
 
-  create_table "devices", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+  create_table "devices", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string   "name"
     t.integer  "android_version"
     t.integer  "user_id",         null: false

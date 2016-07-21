@@ -12,6 +12,10 @@ class Api::BaseApiController < ActionController::API
     device_id = request.headers['device-id']
     if device_id.present? and validate_uuid(device_id)
       @current_device = Device.find_or_initialize_by(id: device_id, user_id: current_user.id)
+      device_name = request.headers['device-name']
+      if device_name.present? and device_name != @current_device.name
+        @current_device.update(name: device_name)
+      end
     end
   end
 

@@ -5,12 +5,8 @@ namespace :project do
       puts args.inspect
       args.with_defaults(:app => 'android-notification-tracker', :expire => false, remove: false)
 
-      if args[:expire] == 'expire'
-        puts "Creating pg backup of #{args.app}"
-        system "heroku pg:backups capture --app #{args.app}"
-      end
       puts "Downloading pg backup of #{args.app}"
-      system "curl -o local/latest.dump `heroku pg:backups public-url --app #{args.app}`"
+      system "pg_dump -h #{ENV['TRACKED_DB_HOST']} -Fc -Z9 -o -U #{ENV['TRACKER_DB_USER']} android-notification-tracker > local/latest.dump"
       puts "Restoring database from backup"
 
       puts "Running rake db:drop"
