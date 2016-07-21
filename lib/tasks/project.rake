@@ -6,7 +6,7 @@ namespace :project do
       args.with_defaults(:app => 'android-notification-tracker', :expire => false, remove: false)
 
       puts "Downloading pg backup of #{args.app}"
-      system "pg_dump -h #{ENV['TRACKED_DB_HOST']} -Fc -Z9 -o -U #{ENV['TRACKER_DB_USER']} android-notification-tracker > local/latest.dump"
+      system "pg_dump -h #{ENV['TRACKER_DB_HOST']} -Fc -Z9 -o -U #{ENV['TRACKER_DB_USER']} android-notification-tracker > local/latest.dump"
       puts "Restoring database from backup"
 
       puts "Running rake db:drop"
